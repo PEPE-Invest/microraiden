@@ -465,26 +465,51 @@ class MicroRaiden {
     });
   }
 
-  signMessage(msg, callback) {
+  signMessage(receiver, block, balance, account, callback) {
     if (!this.isChannelValid()) {
       return callback(new Error("No valid channelInfo"));
     }
-    const hex = '0x' + this.encodeHex(msg);
-    console.log(`Signing "${msg}" => ${hex}, account: ${this.channel.account}`);
-    return this.catchCallback(this.web3.personal.sign,
-                              hex,
-                              this.channel.account,
-                              (err, sign) => {
-      if (err && err.message &&
-          (err.message.includes('Method not found') ||
-           err.message.includes('is not a function'))) {
-        return this.catchCallback(this.web3.eth.sign,
-                                  this.channel.account,
-                                  hex,
-                                  callback);
-      }
-      return callback(err, sign);
-    });
+    //const hex = '0x' + this.encodeHex(msg);
+    //console.log(`Signing "${msg}" => ${hex}, account: ${this.channel.account}`);
+
+    const msgParams = [
+    {
+      type: 'address',
+      name: 'receiver',
+      value: receiver
+    },
+    {
+      type: 'uint32',
+      name: 'block_created',
+      value: block.toFixed()
+  },
+  {
+    type: 'uint192',
+    name: 'balance',
+    value: balance.toFixed()
+  }
+  ]
+
+  var params = [msgParams, account]
+  console.log(JSON.stringify(params), account)
+  var method = 'eth_signTypedData'
+
+  //return this.catchCallback(this.web3.currentProvider.sendAsync, {
+  this.web3.currentProvider.sendAsync ({
+    method,
+    params,
+    account
+  }, function (err, result) {
+    if (err) return console.dir(err)
+    if (result.error) {
+      console.log(result.error.message)
+    }
+    if (result.error) return console.error(result)
+    console.log('eth_signTypedData:' + JSON.stringify(result.result))
+    return callback(err, result.result);
+
+})
+
   }
 
   signBalance(newBalance, callback) {
@@ -498,27 +523,23 @@ class MicroRaiden {
     if (newBalance === this.channel.balance && this.channel.sign) {
       return callback(null, this.channel.sign);
     }
-    return this.contract.getBalanceMessage.call(
-      this.channel.receiver,
-      this.channel.block,
-      this.num2bal(newBalance),
-      { from: this.channel.account },
-      (err, msg) => {
-        if (err) {
-          return callback(err);
-        }
-        // ask for signing of this message
-        return this.signMessage(msg, (err, sign) => {
-          if (err) {
-            return callback(err);
-          }
-          // return signed message
-          if (newBalance === this.channel.balance && !this.channel.sign) {
-            this.setChannel(Object.assign({}, this.channel, { sign }));
-          }
-          return callback(null, sign);
-        });
-      });
+
+    // ask for signing of this message
+    return this.signMessage(
+        this.channel.receiver,
+        this.channel.block,
+        this.num2bal(newBalance),
+        this.channel.account,
+        (err, sign) => {
+      if (err) {
+        return callback(err);
+      }
+      // return signed message
+      if (newBalance === this.channel.balance && !this.channel.sign) {
+        this.setChannel(Object.assign({}, this.channel, { sign }));
+      }
+      return callback(null, sign);
+    });
   }
 
   incrementBalanceAndSign(amount, callback) {

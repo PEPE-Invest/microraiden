@@ -1,5 +1,5 @@
 {
-  "contractAddr": "0xffa52825c7997dd2be80fb91080500a52abd6d5b",
+  "contractAddr": "0x0b3739ed79fe6c6cba341cebb57f15e0ecfb6d82",
   "contractABI": [
     {
       "constant": true,
@@ -12,6 +12,7 @@
         }
       ],
       "payable": false,
+      "stateMutability": "view",
       "type": "function"
     },
     {
@@ -38,6 +39,7 @@
         }
       ],
       "payable": false,
+      "stateMutability": "pure",
       "type": "function"
     },
     {
@@ -76,6 +78,21 @@
         }
       ],
       "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_latest_version_address",
+          "type": "address"
+        }
+      ],
+      "name": "setLatestVersionAddress",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
@@ -105,6 +122,21 @@
       "name": "close",
       "outputs": [],
       "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "version",
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
       "type": "function"
     },
     {
@@ -122,6 +154,7 @@
       "name": "createChannelERC20",
       "outputs": [],
       "payable": false,
+      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
@@ -139,6 +172,21 @@
       "name": "settle",
       "outputs": [],
       "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "latest_version_address",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
       "type": "function"
     },
     {
@@ -169,6 +217,7 @@
         }
       ],
       "payable": false,
+      "stateMutability": "view",
       "type": "function"
     },
     {
@@ -195,6 +244,7 @@
         }
       ],
       "payable": false,
+      "stateMutability": "pure",
       "type": "function"
     },
     {
@@ -208,6 +258,7 @@
         }
       ],
       "payable": false,
+      "stateMutability": "view",
       "type": "function"
     },
     {
@@ -221,6 +272,7 @@
         }
       ],
       "payable": false,
+      "stateMutability": "view",
       "type": "function"
     },
     {
@@ -242,6 +294,7 @@
       "name": "tokenFallback",
       "outputs": [],
       "payable": false,
+      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
@@ -263,6 +316,7 @@
       "name": "topUpERC20",
       "outputs": [],
       "payable": false,
+      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
@@ -288,6 +342,7 @@
       "name": "close",
       "outputs": [],
       "payable": false,
+      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
@@ -302,6 +357,7 @@
         }
       ],
       "payable": false,
+      "stateMutability": "nonpayable",
       "type": "constructor"
     },
     {
@@ -433,125 +489,10 @@
       ],
       "name": "GasCost",
       "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "name": "name",
-          "type": "string"
-        },
-        {
-          "indexed": false,
-          "name": "value",
-          "type": "uint256"
-        }
-      ],
-      "name": "UintE",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "name": "name",
-          "type": "string"
-        },
-        {
-          "indexed": false,
-          "name": "value",
-          "type": "bytes"
-        }
-      ],
-      "name": "BytesE",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "name": "name",
-          "type": "string"
-        },
-        {
-          "indexed": false,
-          "name": "value",
-          "type": "bytes32"
-        }
-      ],
-      "name": "Bytes32E",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "name": "name",
-          "type": "string"
-        },
-        {
-          "indexed": false,
-          "name": "value",
-          "type": "bytes4"
-        }
-      ],
-      "name": "Bytes4E",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "name": "name",
-          "type": "string"
-        },
-        {
-          "indexed": false,
-          "name": "value",
-          "type": "bytes20"
-        }
-      ],
-      "name": "Bytes20E",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "name": "name",
-          "type": "string"
-        },
-        {
-          "indexed": false,
-          "name": "value",
-          "type": "address"
-        }
-      ],
-      "name": "AddressE",
-      "type": "event"
     }
   ],
-  "tokenAddr": "0x04c7f744a0c751d89e99ae79a39060ec6f3c4397",
+  "tokenAddr": "0x27ef1cfa131b8d472e0f43197954e65df7f6fa32",
   "tokenABI": [
-    {
-      "constant": true,
-      "inputs": [
-        {
-          "name": "_addr",
-          "type": "address"
-        }
-      ],
-      "name": "contractIsTrusted",
-      "outputs": [],
-      "payable": false,
-      "type": "function"
-    },
     {
       "constant": true,
       "inputs": [],
@@ -563,6 +504,7 @@
         }
       ],
       "payable": false,
+      "stateMutability": "view",
       "type": "function"
     },
     {
@@ -585,6 +527,16 @@
         }
       ],
       "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "mint",
+      "outputs": [],
+      "payable": true,
+      "stateMutability": "payable",
       "type": "function"
     },
     {
@@ -598,16 +550,23 @@
         }
       ],
       "payable": false,
+      "stateMutability": "view",
       "type": "function"
     },
-      {
-        "constant": false,
-        "inputs": [],
-        "name": "mint",
-        "outputs": [],
-        "payable": true,
-        "type": "function"
-      },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "multiplier",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
     {
       "constant": false,
       "inputs": [
@@ -632,6 +591,7 @@
         }
       ],
       "payable": false,
+      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
@@ -645,6 +605,16 @@
         }
       ],
       "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "transferFunds",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
@@ -658,6 +628,7 @@
         }
       ],
       "payable": false,
+      "stateMutability": "view",
       "type": "function"
     },
     {
@@ -676,12 +647,13 @@
         }
       ],
       "payable": false,
+      "stateMutability": "view",
       "type": "function"
     },
     {
       "constant": true,
       "inputs": [],
-      "name": "owner",
+      "name": "owner_address",
       "outputs": [
         {
           "name": "",
@@ -689,6 +661,7 @@
         }
       ],
       "payable": false,
+      "stateMutability": "view",
       "type": "function"
     },
     {
@@ -702,6 +675,7 @@
         }
       ],
       "payable": false,
+      "stateMutability": "view",
       "type": "function"
     },
     {
@@ -724,6 +698,7 @@
         }
       ],
       "payable": false,
+      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
@@ -750,6 +725,7 @@
         }
       ],
       "payable": false,
+      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
@@ -772,29 +748,48 @@
         }
       ],
       "payable": false,
+      "stateMutability": "view",
       "type": "function"
     },
     {
       "inputs": [
         {
-          "name": "_initialAmount",
+          "name": "initial_supply",
           "type": "uint256"
         },
         {
-          "name": "_tokenName",
+          "name": "token_name",
           "type": "string"
         },
         {
-          "name": "_decimalUnits",
+          "name": "token_symbol",
+          "type": "string"
+        },
+        {
+          "name": "decimal_units",
           "type": "uint8"
-        },
-        {
-          "name": "_tokenSymbol",
-          "type": "string"
         }
       ],
       "payable": false,
+      "stateMutability": "nonpayable",
       "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "_to",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "_num",
+          "type": "uint256"
+        }
+      ],
+      "name": "Minted",
+      "type": "event"
     },
     {
       "anonymous": false,
@@ -813,11 +808,6 @@
           "indexed": false,
           "name": "_value",
           "type": "uint256"
-        },
-        {
-          "indexed": true,
-          "name": "_data",
-          "type": "bytes"
         }
       ],
       "name": "Transfer",
@@ -846,6 +836,6 @@
       "type": "event"
     }
   ],
-  "receiver": "0xb0d5EeAeB7b084a2ba92C24b79f4f2D079A3062b",
+  "receiver": "0xc5075799C8d1e286bc7dC0f285668499DDB5286d",
   "amount": 1
 }

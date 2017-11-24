@@ -131,7 +131,7 @@ def sign_balance_proof(privkey: str, receiver: str, open_block_number: int, bala
     return eth_sign(privkey, msg)
 
 
-def verify_balance_proof(
+def verify_balance_proof_old(
         receiver: str,
         open_block_number: int,
         balance: int,
@@ -139,3 +139,26 @@ def verify_balance_proof(
 ) -> str:
     msg = get_balance_message(receiver, open_block_number, balance)
     return eth_verify(balance_sig, msg)
+
+def verify_balance_proof(
+        receiver: str,
+        open_block_number: int,
+        balance: int,
+        balance_sig: bytes
+) -> str:
+    msg = get_balance_message(receiver, open_block_number, balance)
+
+    msg_hash1 = sha3(
+      sha3('address receiver', 'uint32 block_created', 'uint192 balance'),
+      sha3(receiver, open_block_number, balance)
+    );
+
+    msg_hash2 = sha3(
+      sha3('address receiver', 'uint32 block_created', 'uint192 balance'),
+      sha3(receiver, str(open_block_number), str(balance))
+    );
+
+    print('verify_balance_proof', receiver, open_block_number, balance, balance_sig)
+    print('verify_balance_proof result', addr_from_sig(balance_sig, msg_hash1), addr_from_sig(balance_sig, msg_hash2))
+
+    return addr_from_sig(balance_sig, msg_hash2)

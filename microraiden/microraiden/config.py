@@ -19,7 +19,7 @@ NETWORK_NAMES = {
     1337: 'geth'
 }
 
-CHANNEL_MANAGER_ADDRESS = '0xffa52825c7997dd2be80fb91080500a52abd6d5b'
+CHANNEL_MANAGER_ADDRESS = '0x0b3739ed79fe6c6cba341cebb57f15e0ecfb6d82'
 MICRORAIDEN_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 HTML_DIR = os.path.join(MICRORAIDEN_DIR, 'microraiden', 'webui')
 JSLIB_DIR = os.path.join(HTML_DIR, 'js')
