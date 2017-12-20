@@ -11,6 +11,7 @@ gevent
 click
 requests
 werkzeug
+populus>=2.2.0
 munch
 typing
 bs4
