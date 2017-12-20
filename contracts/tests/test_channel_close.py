@@ -3,6 +3,7 @@ from ethereum import tester
 from utils import sign
 from tests.utils import balance_proof_hash
 from utils.utils import sol_sha3
+from eth_utils import is_same_address
 from tests.fixtures import (
     contract_params,
     owner_index,
@@ -109,7 +110,7 @@ def test_close_by_receiver(
     )
     balance_msg_sig, addr = sign.check(balance_message_hash, tester.k2)
     balance_msg_sig_false, addr2 = sign.check(balance_message_hash, tester.k4)
-    assert addr == sender
+    assert is_same_address(addr, sender)
 
     contract_verified_address = uraiden_instance.call().verifyBalanceProof(
         receiver,
