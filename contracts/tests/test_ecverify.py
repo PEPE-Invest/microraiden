@@ -1,6 +1,7 @@
 import pytest
 from ethereum import tester
 from utils import sign
+from eth_utils import encode_hex
 from tests.utils import balance_proof_hash
 from tests.fixtures import (
     owner_index,
@@ -51,7 +52,7 @@ def test_ecrecover_output(web3, ecverify_test_contract):
         ecverify_test_contract.call().verify_ecrecover_output(
             balance_message_hash,
             r,
-            bytearray(),
+            encode_hex(bytearray()),
             v
         )
 
@@ -59,7 +60,7 @@ def test_ecrecover_output(web3, ecverify_test_contract):
     with pytest.raises(tester.TransactionFailed):
         ecverify_test_contract.call().verify_ecrecover_output(
             balance_message_hash,
-            bytearray(),
+            encode_hex(bytearray()),
             s,
             v
         )
@@ -90,21 +91,21 @@ def test_sign(web3, ecverify_test_contract):
     with pytest.raises(tester.TransactionFailed):
         verified_address = ecverify_test_contract.call().verify(
             balance_message_hash,
-            bytearray()
+            encode_hex(bytearray())
         )
 
     web3.testing.mine(30)
     with pytest.raises(tester.TransactionFailed):
         verified_address = ecverify_test_contract.call().verify(
             balance_message_hash,
-            bytearray(64)
+            encode_hex(bytearray(64))
         )
 
     web3.testing.mine(30)
     with pytest.raises(tester.TransactionFailed):
         verified_address = ecverify_test_contract.call().verify(
             balance_message_hash,
-            bytearray(66)
+            encode_hex(bytearray(66))
         )
 
     web3.testing.mine(30)

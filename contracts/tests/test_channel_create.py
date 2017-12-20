@@ -1,5 +1,6 @@
 import pytest
 from ethereum import tester
+from eth_utils import encode_hex
 from tests.fixtures import (
     channel_deposit_bugbounty_limit,
     contract_params,
@@ -57,7 +58,7 @@ def test_channel_223_create(owner, get_accounts, uraiden_instance, token_instanc
         token_instance.transact({"from": sender}).transfer(
             uraiden_instance.address,
             deposit,
-            bytearray(10)
+            encode_hex(bytearray(10))
         )
     with pytest.raises(tester.TransactionFailed):
         token_instance.transact({"from": sender}).transfer(

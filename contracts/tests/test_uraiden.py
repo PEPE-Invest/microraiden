@@ -1,6 +1,7 @@
 import pytest
 import os
 from ethereum import tester
+from eth_utils import encode_hex
 from tests.fixtures import (
     channel_deposit_bugbounty_limit,
     uraiden_contract_version,
@@ -99,17 +100,33 @@ def test_function_access(
 
     # even if TransactionFailed , this means the function is public / external
     with pytest.raises(tester.TransactionFailed):
-        uraiden_instance.transact().verifyBalanceProof(receiver, open_block_number, 10, bytearray(65))
+        uraiden_instance.transact().verifyBalanceProof(
+            receiver,
+            open_block_number,
+            10,
+            encode_hex(bytearray(65))
+        )
     with pytest.raises(tester.TransactionFailed):
-        uraiden_instance.transact().tokenFallback(sender, 10, bytearray(20))
+        uraiden_instance.transact().tokenFallback(sender, 10, encode_hex(bytearray(20)))
     with pytest.raises(tester.TransactionFailed):
         uraiden_instance.transact({'from': C}).createChannelERC20(D, 10)
     with pytest.raises(tester.TransactionFailed):
         uraiden_instance.transact().topUpERC20(receiver, open_block_number, 10)
     with pytest.raises(tester.TransactionFailed):
-        uraiden_instance.transact().uncooperativeClose(receiver, open_block_number, 10, bytearray(65))
+        uraiden_instance.transact().uncooperativeClose(
+            receiver,
+            open_block_number,
+            10,
+            encode_hex(bytearray(65))
+        )
     with pytest.raises(tester.TransactionFailed):
-        uraiden_instance.transact().cooperativeClose(receiver, open_block_number, 10, bytearray(65), bytearray(65))
+        uraiden_instance.transact().cooperativeClose(
+            receiver,
+            open_block_number,
+            10,
+            encode_hex(bytearray(65)),
+            encode_hex(bytearray(65))
+        )
     with pytest.raises(tester.TransactionFailed):
         uraiden_instance.transact().settle(receiver, open_block_number)
 
