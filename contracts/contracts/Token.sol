@@ -1,4 +1,4 @@
-pragma solidity ^0.4.17;
+pragma solidity ^0.4.19;
 
 /// @title Base Token contract - Functions to be implemented by token contracts.
 contract Token {
