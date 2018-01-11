@@ -19,6 +19,9 @@ contract RaidenMicroTransferChannels {
     // and delete the channel.
     uint32 public challenge_period;
 
+    // Block number at which the contract was created
+    uint32 public creation_block_number;
+
     // Contract semantic version
     string public constant version = '0.1.0';
 
@@ -133,6 +136,7 @@ contract RaidenMicroTransferChannels {
 
         challenge_period = _challenge_period;
         owner_address = msg.sender;
+        creation_block_number = uint32(block.number);
         addTrustedContracts(_trusted_contracts);
     }
 

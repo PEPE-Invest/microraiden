@@ -177,3 +177,17 @@ def test_get_channel_info(web3, get_accounts, uraiden_instance, token_instance, 
     assert channel_data[2] == 0
     assert channel_data[3] == 0
     assert channel_data[4] == 0
+
+
+def test_creation_block_number(chain, get_token_contract, get_block):
+    token = get_token_contract([10000, 'CustomToken', 'TKN', 18])
+    RaidenMicroTransferChannels = chain.provider.get_contract_factory(
+        'RaidenMicroTransferChannels'
+    )
+    txn_hash = RaidenMicroTransferChannels.deploy(args=[token.address, 500, []])
+    contract_address = chain.wait.for_contract_address(txn_hash)
+
+    print(chain.wait.for_receipt(txn_hash)['gasUsed'])
+
+    contract = RaidenMicroTransferChannels(address=contract_address)
+    assert contract.call().creation_block_number() == get_block(txn_hash)
