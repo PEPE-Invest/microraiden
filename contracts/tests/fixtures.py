@@ -3,18 +3,13 @@ from utils.logs import LogHandler
 
 
 print_the_logs = False
-
-
 MAX_UINT256 = 2 ** 256 - 1
 MAX_UINT192 = 2 ** 192 - 1
 MAX_UINT32 = 2 ** 32 - 1
 fake_address = '0x03432'
 empty_address = '0x0000000000000000000000000000000000000000'
 passphrase = '0'
-
-# recheck test_create_token_fallback_uint_conversion when bug bounty limit is removed
 uraiden_contract_version = '0.1.0'
-channel_deposit_bugbounty_limit = 100 * 10 ** 18
 challenge_period_min = 500
 contract_args = [
     {
@@ -45,8 +40,6 @@ channel_values = [
         'type': '223'
     }
 ]
-
-
 uraiden_events = {
     'created': 'ChannelCreated',
     'topup': 'ChannelToppedUp',
