@@ -4,7 +4,7 @@
 
  * [HTTP Request and Response Headers](#http-request-and-response-headers)
  * [Exceptions](#exceptions)
- * [Off-Chain Messages](#off-chain-messages)
+ * [Off-Chain Micropayment Sequence](#off-chain-micropayment-sequence)
  * [Proxy](#proxy)
  * [Python Client](#python-client)
  * [Web Client](#web-client)
@@ -41,21 +41,6 @@ Encoding:
 
 
 #### 402 Payment Required
-
-
-
-|        Headers        |   Type   |   Description                              |
-| --------------------- | -------- | ------------------------------------------ |
-|  RDN-Gateway-Path     | bytes    |  Path root of the channel management app   |
-|  RDN-Receiver-Address | address  |  Address of the Merchant                   |
-|  RDN-Contract-Address | address  |  Address of RaidenMicroTransferChannels  contract |
-|  RDN-Token-Address    | address  |  Address of the Token contract             |
-|  RDN-PRICE            | uint     |  Resource price                            |
-
-
-
-#### 402 Payment Required (non accepted RDN-Balance-Signature )
-
 
 
 
