@@ -9,9 +9,7 @@ from eth_utils import (
 )
 from utils.utils import (
     check_succesful_tx,
-    wait,
 )
-from web3 import Web3, HTTPProvider
 from web3.middleware.pythonic import (
     pythonic_middleware,
     to_hexbytes,
@@ -80,14 +78,15 @@ def main(**kwargs):
         web3 = chain.web3
         print('Web3 provider is', web3.providers[0])
 
-        # Temporary fix for Rinkeby; PoA adds bytes to extraData, which is not yellow-paper-compliant
+        # Temporary fix for Rinkeby
+        # PoA adds bytes to extraData, which is not yellow-paper-compliant
         # https://github.com/ethereum/web3.py/issues/549
         if int(web3.version.network) == 4:
             txn_wait = 500
             size_extraData_for_poa = 200   # can change
 
-            pythonic_middleware.__closure__[2].cell_contents['eth_getBlockByNumber'].args[1].args[0]['extraData'] = to_hexbytes(size_extraData_for_poa, variable_length=True)
-            pythonic_middleware.__closure__[2].cell_contents['eth_getBlockByHash'].args[1].args[0]['extraData'] = to_hexbytes(size_extraData_for_poa, variable_length=True)
+            pythonic_middleware.__closure__[2].cell_contents['eth_getBlockByNumber'].args[1].args[0]['extraData'] = to_hexbytes(size_extraData_for_poa, variable_length=True)  # noqa
+            pythonic_middleware.__closure__[2].cell_contents['eth_getBlockByHash'].args[1].args[0]['extraData'] = to_hexbytes(size_extraData_for_poa, variable_length=True)  # noqa
 
         owner = owner or web3.eth.accounts[0]
         assert owner and is_address(owner), 'Invalid owner provided.'
